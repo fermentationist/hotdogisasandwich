@@ -7,7 +7,8 @@ const mainTheme = {
 
     navLinkFont: "Arial",
     navLinkSize: "24px",
-    navLinkColor: "gold",
+    navLinkColor: "maroon",
+    navBackgroundColor: "pink"
 }
 
 export default mainTheme;

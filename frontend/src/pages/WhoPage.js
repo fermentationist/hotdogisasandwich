@@ -3,7 +3,11 @@ import React from "react";
 const WhoPage = props => {
     return (
         <React.Fragment>
-            Who page
+            <div className="main">
+                <h1>Who page</h1>
+
+                <p>Ruth Bader Ginsburg, for one.</p>
+            </div>
         </React.Fragment>
     )
 }
