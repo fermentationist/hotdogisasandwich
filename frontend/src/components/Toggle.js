@@ -19,7 +19,9 @@ const  ToggleButton = (ButtonComponent) => {
 		render () {			
 			return (
 				<React.Fragment>
-					<ButtonComponent onClick={this.clickHandler} {...this.props}/>
+					<ButtonComponent onClick={this.clickHandler} {...this.props}>
+						{this.props.children}
+					</ButtonComponent>
 				</React.Fragment>
 				);
 		}

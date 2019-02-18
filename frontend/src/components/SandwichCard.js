@@ -3,18 +3,19 @@ import styled from "styled-components";
 import posed from "react-pose";
 import Toggle from "./Toggle";
 
+
 const StyledCard = styled.div`
     display: inline-block;
-    border-radius: 0.5%;
+    width: 18em;
+    height: 18em;
+    border-radius: 33%;
     background-color: ivory;
     color: black;
     z-index: 2;
     box-shadow: 2px -8px 5px 0.13px rgba(33, 33, 33, 0.44);
-    &:after {
-        content: "this";
-        color: red;
-        background-color: gray;
-    }
+    display: grid;
+    align-content: center;
+    justify-content: center;
 `;
 
 const PosedCard = posed(StyledCard)({
@@ -23,7 +24,6 @@ const PosedCard = posed(StyledCard)({
     },
     back: {
         backgroundColor: "thistle",
-        transform: "translate3d(42px, -62px, -135px)",
     }
 });
 
@@ -32,12 +32,24 @@ const ToggleCard = Toggle(PosedCard);
 class SandwichCard extends Component {
     constructor (props){
         super(props);
+        this.setRef = ref => this.ref = ref;
+        console.log("SandwichCard receives props: ", props)
         this.state = {
             front: true,
+            name: props.name,
+            imageUrl: props.imageUrl,
+            linkUrl: props.linkUrl,
+            linkTitle: props.linkTitle,
+            description: props.description,
         }
-        this.handleClick = this.handleClick.bind(this);
+        this.clickHandler = this.clickHandler.bind(this);
+        // this.setRef = this.setRef.bind(this);
     }
-    handleClick (event){
+    // setRef (ref){
+    //     this.ref = ref;
+    // }
+
+    clickHandler (event){
         this.setState({
             front: ! this.state.front
         },
@@ -46,7 +58,13 @@ class SandwichCard extends Component {
     }
     render(){
         return (
-            <ToggleCard pose={this.state.front ? "front" : "back"} callback={this.handleClick}>
+            <ToggleCard pose={this.state.front ? "front" : "back"} ref={this.setRef} callback={this.clickHandler}>
+                <h1>{this.state.name}</h1>
+                {this.state.imageUrl ? (
+                    <img src={this.state.imageUrl} />
+                ) : (null)}
+                <a href={this.state.linkUrl}>{this.state.linkTitle}</a>
+                <p>{this.state.description}</p>
                 {this.props.children}
             </ToggleCard>
         );
